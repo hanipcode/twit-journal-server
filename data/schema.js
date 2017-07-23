@@ -13,12 +13,13 @@ type User  {
 	story: [Story]
 }
 type Story {
-	id: Int
+	id: String
 	createdAt: String
-	journal: [Journal]
+  journal: [Journal]
+  user: User
 }
 type Journal {
-	id: Int
+	id: String
 	createdAt: Date
 	content: String
 	isPosted: Boolean
@@ -28,10 +29,17 @@ type Journal {
 }
 type Query {
 	user(twitterId: String): User
-	journal: String
+}
+type Mutation {
+  createUser(twitterId: String!): User
+  createJournal(userId: String!, content: String!): Journal
+  assignToStory(storyId: String, userId: String!, journalIds: [String]!): Story
+  loveJournal(journalId: String!): Journal
+  postJournal(journalId: String!): Journal
 }
 type schema {
   query: Query
+  mutation: Mutation
 }
 `;
 
