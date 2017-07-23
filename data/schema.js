@@ -1,12 +1,13 @@
 import { makeExecutableSchema, addMockFunctionsToSchema } from 'graphql-tools';
 import dateScalar from './type/Date';
+import resolvers from './resolvers';
 
 const typeDefs = `
 
 scalar Date
 
 type User  {
-	id: Int
+	id: String
 	twitterId: String
 	journal: [Journal]
 	story: [Story]
@@ -29,34 +30,20 @@ type Query {
 	user(twitterId: String): User
 	journal: String
 }
+type schema {
+  query: Query
+}
 `;
 
 const scalarResolver = {
   Date: dateScalar,
 };
 
-const mocks = {
-  String: () => 'Ini string',
-  Query: () => ({
-    user: (_, args) => {
-      return { twitterId: args.twitterId };
-    },
-  }),
-  User: () => ({ twitterId: 'maamamamamam' }),
-  Journal: () => {
-    return {
-      createdAt: new Date(Date.now()),
-      content: 'Hai ini content lho',
-    };
-  },
-};
-
 const schema = makeExecutableSchema({
   typeDefs,
-  resolvers: scalarResolver,
+  resolvers: Object.assign(resolvers, scalarResolver),
   allowUndefinedInResolve: true, // optional
   printErrors: true,
 });
-addMockFunctionsToSchema({ schema, mocks, preserveResolvers: true });
 
 export default schema;

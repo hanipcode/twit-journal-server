@@ -6,6 +6,6 @@ const UserSchema = Schema({
   story: [{ type: Schema.Types.ObjectId, ref: 'Story' }],
 });
 
-const User = Mongoose.model('User', UserSchema);
+const UserModel = Mongoose.model('User', UserSchema);
 
-export default User;
+export default UserModel;

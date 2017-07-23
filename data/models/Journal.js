@@ -9,5 +9,5 @@ const JournalSchema = Schema({
   story: { type: Schema.Types.ObjectId, ref: 'Story' },
 });
 
-const Journal = Mongoose.model('Journal', JournalSchema);
-export default Journala;
+const JournalModel = Mongoose.model('Journal', JournalSchema);
+export default JournalModel;
