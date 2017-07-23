@@ -1,6 +1,18 @@
 # twitter journal (Learning Graphql)
 this app  will use a journalling system that user can post using twitter-like post and add functionality to post the twitter.
 
+## How To Run and test the query
+```bash
+#clone the repo
+$ git clone https://github.com/hanipcode/twit-journal-server.git
+#cd
+$ cd twit-journal-server
+#installing packages
+$ npm install
+#run the server
+$ node index.js
+```
+now open up your browser and go to http://localhost:8080/graphiql
 ## Flow
 - first on the mobile apps user will be prompted a screen to login if they're not currently logged in
 - then after being logged in, the user can post a journal. the view would consist of input box with an option to directly share to twitter
